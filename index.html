@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+ <head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url(login_bg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .wrapper {
+            width: 420px;
+            background: transparent;
+            border: 2px solid #24305e;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 20px #374785;
+            color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+        }
+        .wrapper h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .wrapper .input-box {
+            width: 100%;
+            height: 60px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .input-box input {
+            width: 100%;
+            height: 60px;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid #24305e;
+            border-radius: 30px;
+            font-size: 18px;
+            color: #fff;/*padding: 20px 45px 20px 20px;*/
+            padding: 15px;
+        }
+        .input-box input::placeholder {
+            color: #fff;
+        }
+        .input-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #fff;
+        }
+        .wrapper .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .remember-forgot label input {
+            accent-color: #fff;
+            margin-right: 20px;
+            vertical-align: middle;
+        }
+        .remember-forgot a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+        .wrapper .btn {
+            width: 100%;
+            height: 50px;
+            background: #fff;
+            border: none;
+            outline: none;
+            border-radius: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            font-size: 16px;
+            color: #24305e;
+            font-weight: 600;
+        }
+        .wrapper .register-link {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .register-link p a {
+            color: #3895D3;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .alert {
+            font-weight: lighter;
+            margin-top: 10px; 
+            color: greenyellow;
+        }
+    </style>
+  <title>TUTOR CONNECT LOGIN PAGE</title>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+ </head>
+ <body>
+  <section>
+    <div class="wrapper">
+        <h1>LOGIN</h1>
+        <div class="input-box">
+            <input id="loginUsername" placeholder="Tutor ID" type="text">
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+            <input id="loginPassword" placeholder="Password" type="password">
+            <i class='bx bxs-lock-alt'></i>
+        </div>
+        <div class="remember-forgot">
+            <lable><input id="myCheckbox" type="checkbox">Remember me</lable>
+            <a href="#" onclick="showAlert(); return false;">Forgot password?</a>
+            <script>
+                function showAlert(){
+                var message="Kindly contact your Admin!\nEmail : nithiyamanoharan2004@gmail.com";
+                alert(message);
+                }
+            </script>
+        </div>
+        <script>
+            var checkbox = document.getElementById("myCheckbox");
+            checkbox.addEventListener("change", function()
+            {
+              var username = document.getElementById("loginUsername").value;
+              var password = document.getElementById("loginPassword").value;
+              if (username=="" || password=="")
+              {
+                document.getElementById("loginMessage").innerHTML = "Please entry your Tutor ID and password.";
+                checkbox.checked=false;
+              }
+              else if (checkbox.checked) 
+              {
+                var password = document.getElementById("loginPassword").value;
+                alert("Password: " +password);
+              }
+            });
+        </script>
+        <button id="loginPage" class="btn">Login</button>
+        <p class="alert" id="loginMessage"></p>
+        <script>
+
+            document.getElementById("loginUsername").addEventListener('keyup', function (event)
+            {
+                if (event.key === 'Enter')
+                {
+                    document.getElementById("loginPassword").focus();
+                }
+            });
+
+            document.getElementById("loginPassword").addEventListener('keyup', function (event)
+            {
+                if (event.key === 'Enter')
+                {
+                    var username = document.getElementById("loginUsername").value;
+                    var password = document.getElementById("loginPassword").value;
+                    if (username == "2620" && password == "sastra")
+                    {
+                        document.getElementById("loginMessage").innerHTML = "Login successful!";
+                        window.location.href = "aindex.html";
+                    }
+                    else if (username == "2621" && password == "sastra")
+                    {
+                        document.getElementById("loginMessage").innerHTML = "Login successful!";
+                        window.location.href = "bindex.html";
+                    }
+                    else if (username=="" || password=="")
+                    {
+                        document.getElementById("loginMessage").innerHTML = "Please entry your Tutor ID and password!";
+                    }
+                    else
+                    {
+                        document.getElementById("loginMessage").innerHTML = "Login failed. Please check your Tutor ID and password!";
+                    }
+                }
+            });
+
+            document.getElementById("loginPage").addEventListener("click", function ()
+            {
+                var username = document.getElementById("loginUsername").value;
+                var password = document.getElementById("loginPassword").value;
+                if (username == "2620" && password == "sastra")
+                {
+                    document.getElementById("loginMessage").innerHTML = "Login successful!";
+                    window.location.href = "aindex.html";
+                }
+                else if (username == "2621" && password == "sastra")
+                {
+                    document.getElementById("loginMessage").innerHTML = "Login successful!";
+                    window.location.href = "bindex.html";
+                }
+                else if (username=="" || password=="")
+                {
+                    document.getElementById("loginMessage").innerHTML = "Please entry your Tutor ID and password.";
+                }
+                else
+                {
+                    document.getElementById("loginMessage").innerHTML = "Login failed. Please check your Tutor ID and password.";
+                }
+            });
+        </script>
+    </div>
+  </section>
+ </body>
+</html>
