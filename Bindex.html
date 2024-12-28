@@ -1,0 +1,493 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+            *{
+                padding: 0;
+                margin: 0;
+                text-decoration: none;
+                list-style: none;
+                box-sizing: border-box;
+            }
+
+            nav{
+                background:transparent;
+                height: 80px;
+                width: 100%;
+            }
+
+            nav ul{
+                float: right;
+                margin-right: 20px;
+            }
+
+            nav ul li{
+                display: inline-block;
+                line-height: 80px;
+                margin: 0 5px;
+            }
+
+            nav ul li a{
+                color:white;
+                font-size: 17px;
+                padding: 7px 13px;
+                border-radius: 3px;
+                text-transform: uppercase;
+            }
+
+            a.active,a:hover{
+                background: #047BF4;
+                transition: .5s;
+            }
+
+            label.menu{
+                color: white;
+                font-size: 35px;
+                line-height: 80px;
+                padding: 0  100px;
+                font-weight: bold;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #0CA8FF;
+            }
+
+            .container {
+                max-width: 1250px;
+                margin: 0 auto;
+                background-color: #f0f0f0;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            pre{
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                text-align: center;
+                font-weight: 100px;
+                font-size: x-large;
+            }
+
+            .table1 {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .table1 td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: left;
+            }
+
+            .table1 th {
+                background-color: #047BF4;
+                color: white;
+                font-weight: bold;
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .table1 tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .table1 td:nth-child(8) {
+                align-items : center;
+            }
+
+            .edit-mode {
+                display: none;
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #fff;
+            }
+
+            .container p {
+                font-size: 18px;
+                margin: 20px 0;
+                text-align: center;
+            }
+
+            details {
+                margin-top: 20px;
+            }
+
+            summary {
+                font-weight: bold;
+                cursor: pointer;
+                color: #047BF4;
+            }
+
+            input[type="search"] {
+                width: 60%;
+                padding: 10px;
+                border: 2px solid #047BF4;
+                border-radius: 50px;
+                margin: 10px 0;
+                font-size: 16px;
+                text-align: left;
+                padding-left: 25px;
+            }
+
+            input[type="search"]::placeholder {
+                font-size: 16px;
+            }
+
+            button {
+                background-color: #047BF4;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #047BF4;
+            }
+
+            .student-row input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+            .student-row input[type="number"] {
+                width: 100%;
+                padding: 6px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                text-align: center;
+            }
+    </style>
+    <title>II BCA B STUDENT LIST</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <label class="menu">TUTOR CONNECT</label>
+            <ul>
+                <li><a href="bindex.html">INDEX</a></li>
+                <li><a href="CDb.html">COURSE DETAILS</a></li>
+                <li><a href="TTb.html">TIME TABLE</a></li>
+                <li><a href="login.html">LOG-OUT</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container"><br><br>
+        <pre>CLASS:<strong>II BCA B</strong>&nbsp;&nbsp;&nbsp;&nbsp;ROOM NO:<strong>514</strong>&nbsp;&nbsp;&nbsp;&nbsp;TUTOR:<strong>Mr.Eashwar</strong>&nbsp;&nbsp;&nbsp;&nbsp;SEMESTER:<strong>IV</strong></pre><br><br>
+    <input type="search" id="searchInput" placeholder="Search for a student" onkeyup="searchStudent()">
+    <button onclick="searchStudentReg()">Search By Register No.</button>
+    <button onclick="clearSearch()">Clear</button>
+    <table class="table1">
+        <tr class="t_head">
+            <th colspan="8">STUDENT LIST</th>
+        </tr>
+        <tr class="t_head">
+            <th>Sl. No.</th>
+            <th>Register No</th>
+            <th>Student Name</th>
+            <th>Date of Birth</th>
+            <th>Student No</th>
+            <th>Parent No</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+    </table>
+    <h2>Add Student</h2>
+    <div>
+        <input type="number" id="registerNo" placeholder="Register No *">
+        <input type="text" id="studentName" placeholder="Student Name *" oninput="validateInput(this)">
+        <input type="date" id="dateOfBirth" placeholder="Date of Birth">
+        <input type="number" id="studentNo" placeholder="Student No *">
+        <input type="email" id="emailId" placeholder="Email *">
+        <input type="text" id="place" placeholder="Location" oninput="validateLocation(this)"><br>
+        <button onclick="addStudent()">Add</button>
+        <button onclick="cancelSubmit()">Clear</button>
+    </div>
+
+    <div class="edit-mode">
+        <h2>Edit Student</h2>
+        <input type="number" id="editRegisterNo" placeholder="Register No *">
+        <input type="text" id="editStudentName" placeholder="Student Name *" oninput="validateInput(this)">
+        <input type="date" id="editDateOfBirth" placeholder="Date of Birth">
+        <input type="number" id="editStudentNo" placeholder="Student No *">
+        <input type="email" id="editEmailId" placeholder="Email *">
+        <input type="text" id="editPlace" placeholder="Location" oninput="validateLocation(this)"><br>
+        <button onclick="saveEditedStudent()">Save</button>
+        <button onclick="cancelEdit()">Cancel</button>
+    </div>
+
+    <script>
+        function validateInput(inputElement) {
+            var regex = /^[A-Za-z\s]*$/;
+
+            if (!regex.test(inputElement.value)) {
+            inputElement.value = inputElement.value.replace(/[^A-Za-z\s]/g, '');
+            }
+        }
+
+        function validateLocation(inputElement) {
+            var regex = /^[A-Za-z\s]*$/;
+
+            if (!regex.test(inputElement.value)) {
+                inputElement.value = inputElement.value.replace(/[^A-Za-z\s]/g, '');
+            }
+        }
+
+        function addStudent() {
+            var registerNo = document.getElementById("registerNo").value;
+            var studentName = document.getElementById("studentName").value;
+            var dateOfBirth = document.getElementById("dateOfBirth").value;
+            var studentNo = document.getElementById("studentNo").value;
+            var emailId = document.getElementById("emailId").value;
+            var place = document.getElementById("place").value;
+
+            if(registerNo=='' || studentName=='')
+            {
+                alert('Please enter the details.');
+                return;
+            }
+            if(studentNo=='' || emailId=='')
+            {
+                alert('Please enter contact number.');
+                return;
+            }
+            if(studentNo>9999999999 || studentNo<5555555555) {
+                alert('Please enter a valid student contact number.');
+                return;
+            }
+
+            var student = {
+            reg: registerNo,
+            name: studentName,
+            dob: dateOfBirth,
+            student: studentNo,
+            mail: emailId,
+            location: place
+            };
+
+            var students = JSON.parse(localStorage.getItem("students2")) || [];
+            students.push(student);
+
+            students.sort((a, b) => a.name.localeCompare(b.name));
+
+            localStorage.setItem("students2", JSON.stringify(students));
+
+            document.getElementById("registerNo").value = "";
+            document.getElementById("studentName").value = "";
+            document.getElementById("dateOfBirth").value = "";
+            document.getElementById("studentNo").value = "";
+            document.getElementById("emailId").value = "";
+            document.getElementById("place").value = "";
+
+            displayStudents();
+        }
+
+        function displayStudents() {
+            var table = document.querySelector(".table1");
+            table.innerHTML = `
+                <tr class="t_head">
+                    <th colspan="8">STUDENT LIST</th>
+                </tr>
+                <tr class="t_head">
+                    <th>Sl. No.</th>
+                    <th>Register No</th>
+                    <th>Student Name</th>
+                    <th>Date of Birth</th>
+                    <th>Student No</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>`;
+
+            var students = JSON.parse(localStorage.getItem("students2")) || [];
+            students.forEach(function(student, index) {
+                var newRow = table.insertRow(-1);
+                newRow.className = "student2-row";
+                newRow.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td class="student-reg">${student.reg}</td>
+                    <td class="student-name">${student.name}</td>
+                    <td class="dob">${student.dob}</td>
+                    <td class="student-no">${student.student}</td>
+                    <td class="mail-id">${student.mail}</td>
+                    <td class="place">${student.location}</td>
+                    <td><button onclick="editStudent(${index})">Edit</button> <button onclick="deleteStudent(${index})">Delete</button></td>
+                `;
+            });
+        }
+
+        function searchStudent() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.querySelector(".table1");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function searchStudentReg() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.querySelector(".table1");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function clearSearch() {
+            var searchInput = document.getElementById("searchInput");
+            searchInput.value = "";
+            displayStudents();
+        }
+
+        function editStudent(index) {
+            var students = JSON.parse(localStorage.getItem("students2")) || [];
+            var student = students[index];
+
+            document.getElementById("editRegisterNo").value = student.reg;
+            document.getElementById("editStudentName").value = student.name;
+            document.getElementById("editDateOfBirth").value = student.dob;
+            document.getElementById("editStudentNo").value = student.student;
+            document.getElementById("editEmailId").value = student.mail;
+            document.getElementById("editPlace").value = student.location;
+
+            localStorage.setItem("editingIndex", index);
+
+            var editForm = document.querySelector(".edit-mode");
+            editForm.style.display = "block";
+        }
+
+        function saveEditedStudent() {
+            var editForm = document.querySelector(".edit-mode");
+            var index = localStorage.getItem("editingIndex");
+            var studentReg = document.getElementById("editRegisterNo").value;
+            var studentName = document.getElementById("editStudentName").value;
+            var dateOfBirth = document.getElementById("editDateOfBirth").value;
+            var studentNo = document.getElementById("editStudentNo").value;
+            var emailId = document.getElementById("editEmailId").value;
+            var place = document.getElementById("editPlace").value;
+
+            if(studentReg=='' || studentName=='')
+            {
+                alert('Please enter the details.');
+                return;
+            }
+            if(studentNo=='' || emailId=='')
+            {
+                alert('Please enter contact number.');
+                return;
+            }
+            if(studentNo>9999999999 || studentNo<1111111111) {
+                alert('Please enter a valid student contact number.');
+                return;
+            }
+
+            var students = JSON.parse(localStorage.getItem("students2")) || [];
+
+            if (index != null) {
+                students[index].reg = studentReg;
+                students[index].name = studentName;
+                students[index].dob = dateOfBirth;
+                students[index].student = studentNo;
+                students[index].mail = emailId;
+                students[index].location = place;
+
+                localStorage.setItem("students2", JSON.stringify(students));
+
+                document.getElementById("editRegisterNo").value = "";
+                document.getElementById("editStudentName").value = "";
+                document.getElementById("editDateOfBirth").value = "";
+                document.getElementById("editStudentNo").value = "";
+                document.getElementById("editEmailId").value = "";
+                document.getElementById("editPlace").value = "";
+
+                editForm.style.display = "none";
+
+                displayStudents();
+            }
+        }
+
+        function cancelEdit() {
+            var editForm = document.querySelector(".edit-mode");
+            var index = localStorage.getItem("editingIndex");
+            if (index != null){
+            var studentReg = studentReg;
+            var studentName = studentName;
+            var dateOfBirth = dateOfBirth;
+            var studentNo = studentNo;
+            var emailId = emailId;
+            var place = place;
+
+            document.getElementById("editRegisterNo").value = "";
+            document.getElementById("editStudentName").value = "";
+            document.getElementById("editDateOfBirth").value = "";
+            document.getElementById("editStudentNo").value = "";
+            document.getElementById("editEmailId").value = "";
+            document.getElementById("editPlace").value = "";
+
+            editForm.style.display = "none";
+
+            displayStudents();
+            }
+        }
+
+        function cancelSubmit() {
+            document.getElementById("registerNo").value = "";
+            document.getElementById("studentName").value = "";
+            document.getElementById("dateOfBirth").value = "";
+            document.getElementById("studentNo").value = "";
+            document.getElementById("emailId").value = "";
+            document.getElementById("place").value = "";
+        }
+
+
+        function deleteStudent(index) {
+            var alert = confirm("Are you sure want to delete the Student details?");
+            if (alert) {
+            var students = JSON.parse(localStorage.getItem("students2")) || [];
+            students.splice(index, 1);
+            localStorage.setItem("students2", JSON.stringify(students));
+
+            displayStudents();
+            }
+            else
+                return false;
+        }
+
+        displayStudents();
+</script>
+</body>
+</html>
