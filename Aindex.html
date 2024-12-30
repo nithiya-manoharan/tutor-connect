@@ -80,37 +80,12 @@
             }
         }
 
-        /*function validateEmail(inputElement) {
-            var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!regex.test(inputElement.value)) {
-            inputElement.value = inputElement.value.replace(/^[^\s@]+@[^\s@]+\.[^\s@]+$/g,'');
-            }
-        }*/
-
         function validateEmail(inputElement){
             emaillabel.style.bottom="45px";
             if(!emailfield.value.match(/^[A-Za-z\._\0-9][@][A-Za-z][\.][a-z]{2,4}$/)){
             emailerror.innerHTML = "please enter a valid email";
             }
         }
-
-        /*function validateEmail(inputElement) {
-            // Regular expression for a basic email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            // Test the email against the regular expression
-            return emailRegex.test(inputElement);
-        }
-
-        // Example usage:
-        const emailToValidate = "user@example.com";
-        if (validateEmail(emailToValidate)) {
-            console.log("Email is valid");
-        } else {
-            console.log("Email is not valid");
-        }*/
-
 
         function validateLocation(inputElement) {
             var regex = /^[A-Za-z\s]*$/;
