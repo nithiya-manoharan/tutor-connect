@@ -1,103 +1,16 @@
 <!doctype html>
 <html>
     <head>
-        <style>
-            *{
-                padding: 0;
-                margin: 0;
-                text-decoration: none;
-                list-style: none;
-                box-sizing: border-box;
+        <link rel="stylesheet" href="timeTable.css">
+        <script>
+            function checkWindowSize() {
+              if (window.innerWidth < 1055) {
+                alert("Kindly use Desktop view, because this site support desktop view alone.");
+              }
             }
-
-            nav{
-                background: transparent;
-                height: 80px;
-                width: 100%;
-            }
-
-            nav ul{
-                float: right;
-                margin-right: 20px;
-            }
-
-            nav ul li{
-                display: inline-block;
-                line-height: 80px;
-                margin: 0 5px;
-            }
-
-            nav ul li a{
-                color: white;
-                font-size: 17px;
-                padding: 7px 13px;
-                border-radius: 3px;
-                text-transform: uppercase;
-            }
-
-            a.active,a:hover{
-                background: #047BF4;
-                transition: .5s;
-            }
-
-            label.menu{
-                color: white;
-                font-size: 35px;
-                line-height: 80px;
-                padding: 0  100px;
-                font-weight: bold;
-            }
-
-            body{
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #0CA8FF;
-            }
-
-            .container{
-                max-width: 1100px;
-                margin: 0 auto;
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .table, .table2{
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            .table2 td{
-                border: 1px solid #ddd;
-                padding: 10px;
-                text-align: center;
-            }
-
-            .table td{
-                border: 1px solid #ddd;
-                padding: 10px;
-                text-align: left;
-            }
-
-            .table th, .table2 th{
-                background-color: #047BF4;
-                color: white;
-                font-weight: bold;
-                border: 1px solid #ddd;
-                padding: 10px;
-                text-align: center;
-            }
-
-            .table2 th{
-                background-color: #047BF4;
-            }
-
-            .table tr:nth-child(even){
-                background-color: #f2f2f2;
-            }
-        </style>
+            window.onload = checkWindowSize;
+            window.onresize = checkWindowSize;
+        </script>
         <title>II BCA A TIME TABLE</title>
     </head>
     <header>
@@ -107,7 +20,7 @@
                 <li><a href="Aindex.html">INDEX</a></li>
                 <li><a href="aCourseDetail.html">COURSE DETAILS</a></li>
                 <li><a href="aTimeTable.html">TIME TABLE</a></li>
-                <li><a href="index.html">LOG-OUT</a></li>
+                <li><a href="index.html" style="padding: 7px 0px 7px 13px;">LOG-OUT</a></li>
             </ul>
         </nav>
     </header>
